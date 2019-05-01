@@ -5,6 +5,10 @@ const UserSchema = new mongoose.Schema ({
     type: String,
     required: true
   },
+  score: {
+    type: Number,
+    required: false
+  },
   email: {
     type: String,
     required: false,
@@ -20,4 +24,4 @@ const UserSchema = new mongoose.Schema ({
   }
 });
 
-module.exports = User = mongoos.model('user', UserSchema);
+module.exports = User = mongoose.model('user', UserSchema);
