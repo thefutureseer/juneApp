@@ -6,11 +6,13 @@ const ProfileSchema = new mongoose.Schema({
  },
  team: {
   type: String,
-  required: false
+  required: false,
+  unique: true
  },
  name: {
    type: String,
-   required: true
+   required: true,
+   unique: true
  },
  score: {
    type: Number,
@@ -27,7 +29,8 @@ const ProfileSchema = new mongoose.Schema({
  },
  game: {
   type: String,
-  required: false
+  required: false,
+  unique: true
  },
  location: {
   type: String,
@@ -35,7 +38,8 @@ const ProfileSchema = new mongoose.Schema({
  },
  notes: {
  type: String,
- required: false
+ required: false,
+ unique: true
  },
  date: {
    type: Date,
