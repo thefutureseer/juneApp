@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const auth = require('../../middleware/auth');
+const { check, validationResult } = require('express-validator/check');
 
 const Profile = require('../../models/Profile');
 const User = require('../../models/User');
@@ -24,6 +25,68 @@ router.get('/me', auth, async (req, res) => {
     console.error(err.message);
     res.status(500).send('server error');
   }
+});
+
+//@route POST api/profile
+//@discription create or update user profile
+//@access private
+router.post(
+  '/',
+  [ auth, 
+  [ check('name', 'name is required')
+    .not()
+    .isEmpty()
+  ]], 
+  async (req, res) => {
+    const errors = validationResult(req);
+    if(!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+    const {
+
+      team,
+      name,
+      score,
+      email,
+      password,
+      game,
+      location,
+      notes,
+      date
+    } = req.body;
+// Build profile fields knows this from token
+    const profileFields = {};
+    profileFields.user = req.user.id;
+    if (team) profileFields.team = team;
+    if (name)profileFields.name = name;
+    if (score) profileFields.score = score;
+    if (email) profileFields.email = email;
+    if (password) profileFields.password = password;
+    if (game) profileFields.game = game;
+    if (location) profileFields.location = location;
+    if (notes) profileFields.notes = notes;
+    if (date) profileFields.date = date;
+    try {
+      let profile = await Profile.findOne({ user: req.user.id});
+
+      if(profile) {
+//Update profile
+        profile = await Profile.findOneAndUpdate(
+          {user: req.user.id}, 
+          {$set: profileFields}, 
+          {new: true}
+        );
+        return res.json(profile);
+      } 
+// Create
+      profile = new Profile(profileFields);
+
+      await profile.save();
+      res.json(profile);
+    } catch(err) {
+      console.error(err.message);
+      res.status(500).json('server error');
+    }
 });
 
 module.exports = router;
