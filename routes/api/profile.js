@@ -7,7 +7,7 @@ const Profile = require('../../models/Profile');
 const User = require('../../models/User');
 
 //@route GET api/profile/me
-//@discription get current users profile
+//@description get current users profile
 //@access private
 router.get('/me', auth, async (req, res) => {
   try {
@@ -28,7 +28,7 @@ router.get('/me', auth, async (req, res) => {
 });
 
 //@route POST api/profile
-//@discription create or update user profile
+//@description create or update user profile
 //@access private
 router.post(
   '/',
@@ -88,5 +88,37 @@ router.post(
       res.status(500).json('server error');
     }
 });
+
+//rout: GET api/profile
+//description: Get all profiles
+//access: public
+router.get('/', async (req, res) => {
+ try {
+   const profiles = await Profile.find().populate('user', ['name', 'date']);
+   res.json(profiles);
+ } catch (err) {
+   console.error(err.message);
+   res.status(500).send('Server error');
+ }
+});
+
+//rout: GET api/profile/user/:user_id
+//description: Get profile by user id
+//access: public
+router.get('/user/:user_id', async (req, res) => {
+  try {
+    const profile = await Profile.findOne({ user: req.params.user_id }).populate('user', ['name', 'date']);
+    if(!profile) return res.status(400).json({ msg: 'There is no profile for that user name'});
+    res.json(profile);
+  } catch (err) {
+    console.error(err.message);
+     if(err.kind == 'ObjectId') {
+       return res.status(400).json({ msg: 'There is no profile for that user name'});
+     }
+    res.status(500).send('Server error');
+  }
+ });
+ 
+
 
 module.exports = router;
