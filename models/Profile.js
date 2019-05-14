@@ -4,15 +4,9 @@ const ProfileSchema = new mongoose.Schema({
    type: mongoose.Schema.Types.ObjectId,
    ref: 'user'
  },
- team: {
-  type: String,
-  required: false,
-  unique: true
- },
  name: {
    type: String,
-   required: true,
-   unique: true
+   required: true
  },
  score: {
    type: Number,
@@ -26,20 +20,6 @@ const ProfileSchema = new mongoose.Schema({
  password: {
   type: String,
   required: false
- },
- game: {
-  type: String,
-  required: false,
-  unique: true
- },
- location: {
-  type: String,
-  required: false
- },
- notes: {
- type: String,
- required: false,
- unique: true
  },
  date: {
    type: Date,

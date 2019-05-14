@@ -1,10 +1,6 @@
 const mongoose = require('mongoose');
 
 const UserSchema = new mongoose.Schema ({
-  team: {
-   type: String,
-   required: false
-  },
   name: {
     type: String,
     required: true
@@ -15,18 +11,9 @@ const UserSchema = new mongoose.Schema ({
   },
   email: {
     type: String,
-    required: false,
-    unique: true
+    required: false
   },
   password: {
-   type: String,
-   required: false
-  },
-  game: {
-   type: String,
-   required: false
-  },
-  location: {
    type: String,
    required: false
   },
