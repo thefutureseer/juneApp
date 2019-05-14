@@ -136,5 +136,41 @@ router.delete('/', auth, async (req, res) => {
   }
  });
 
+// @route PUT api/profile/game
+// @description
+// @ private
+router.put('/game', 
+[ auth,
+ [ 
+   check('day', 'game day is required').not().isEmpty() 
+ ]
+], 
+async (req, res) => {
+ const errors = validationResult(req);
+ if(!errors.isEmpty()) {
+  return res.status(400).json({ errors: errors.array() });
+ }
+ const {
+  day,
+  hole,
+  score
+ } = req.body;
+ const newGame = {
+   day,
+   hole,
+   score
+ }
+ try {
+   const profile = await Profile.findOne({ user: req.user.id });
 
+   profile.game.unshift(newGame);
+
+   await profile.save();
+
+   res.json(profile);
+ } catch (err) {
+   console.error(err.message);
+   res.status(500).send('Server error');
+ }
+});
 module.exports = router;

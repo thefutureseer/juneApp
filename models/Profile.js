@@ -21,6 +21,22 @@ const ProfileSchema = new mongoose.Schema({
   type: String,
   required: false
  },
+ game: [ 
+  {
+   day: {
+   type: String,
+   required: true
+   },
+   hole: {
+    type: String,
+    required: true
+   },
+   score: {
+     type: Number,
+     required: true
+   }
+  }
+ ],
  date: {
    type: Date,
    default: Date.now
