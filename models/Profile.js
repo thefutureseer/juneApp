@@ -8,15 +8,17 @@ const ProfileSchema = new mongoose.Schema({
    type: String,
    required: true
  },
- score: {
+ phone: {
    type: Number,
-   required: false
+   required: true
  },
+ /*
  email: {
    type: String,
    required: false,
    unique: true
  },
+ */
  password: {
   type: String,
   required: false
@@ -25,7 +27,8 @@ const ProfileSchema = new mongoose.Schema({
   {
    day: {
    type: String,
-   required: true
+   required: true,
+   unique: true
    },
    hole: {
     type: String,
@@ -37,6 +40,7 @@ const ProfileSchema = new mongoose.Schema({
    }
   }
  ],
+ //instagram
  date: {
    type: Date,
    default: Date.now

@@ -7,7 +7,7 @@ const {check, validationResult} = require('express-validator/check');
 
 const User = require('../../models/User');
 
-//@route GET api/users
+//@route POST api/users
 //@discription test route
 //@access public
 router.post(
@@ -16,7 +16,7 @@ router.post(
     check('name', 'name is required')
       .not()
       .isEmpty(),
-    check('email', 'please include a valid email').isEmail(),
+    check('phone', 'please include a phone number').not().isEmpty(),
     check('password', 'password must be 8 digits or more'
     ).isLength({ min: 8 })
   ], 

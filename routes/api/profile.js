@@ -13,7 +13,7 @@ router.get('/me', auth, async (req, res) => {
   try {
     const profile = await Profile.findOne({ user: req.user.id }).populate(
       'user', 
-      ['name', 'email']
+      ['name', 'game']
     );
 
     if (!profile) {
@@ -33,7 +33,8 @@ router.get('/me', auth, async (req, res) => {
 router.post(
   '/',
   [auth, [
-    check('email', 'email required').not().isEmpty()
+    check('name', 'name required').not().isEmpty(),
+    check('phone', 'phone number is required').exists()
     ]
   ],
   async (req, res) => {
@@ -43,8 +44,8 @@ router.post(
     }
     const {
       name,
-      score,
-      email,
+      phone,
+      game,
       instagram
     } = req.body;
 
@@ -52,8 +53,8 @@ router.post(
     const profileFields = {};
     profileFields.user = req.user.id;
     if (name) profileFields.name = name;
-    if (score) profileFields.score = score;
-    if (email) profileFields.email = email;
+    if (phone) profileFields.phone = phone;
+    if (game) profileFields.score = game;
 //console.log(profileFields);
 
 //build social object
@@ -92,7 +93,7 @@ router.post(
 //access: public
 router.get('/', async (req, res) => {
  try {
-   const profiles = await Profile.find().populate('user', ['name', 'email']);
+   const profiles = await Profile.find().populate('user', ['name', 'phone']);
    res.json(profiles);
  } catch (err) {
    console.error(err.message);
@@ -105,7 +106,7 @@ router.get('/', async (req, res) => {
 //access: public
 router.get('/user/:user_id', async (req, res) => {
   try {
-    const profile = await Profile.findOne({ user: req.params.user_id }).populate('user', ['name', 'email']);
+    const profile = await Profile.findOne({ user: req.params.user_id }).populate('user', ['name', 'phone']);
     if(!profile) return res.status(400).json({ msg: 'Profile not found'});
     res.json(profile);
   } catch (err) {
