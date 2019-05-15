@@ -40,6 +40,10 @@ const ProfileSchema = new mongoose.Schema({
    }
   }
  ],
+ note: {
+   type: String,
+   required: false
+ },
  //instagram
  date: {
    type: Date,

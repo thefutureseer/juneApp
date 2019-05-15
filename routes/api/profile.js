@@ -46,6 +46,7 @@ router.post(
       name,
       phone,
       game,
+      note,
       instagram
     } = req.body;
 
@@ -55,6 +56,7 @@ router.post(
     if (name) profileFields.name = name;
     if (phone) profileFields.phone = phone;
     if (game) profileFields.score = game;
+    if (note) profileFields.note = note;
 //console.log(profileFields);
 
 //build social object
@@ -71,9 +73,9 @@ router.post(
           { $set: profileFields }, 
           { new: true }
         );
-        
+
         return res.json(profile);
-        
+  
       } 
 // Create
       profile = new Profile(profileFields);
@@ -174,4 +176,30 @@ async (req, res) => {
    res.status(500).send('Server error');
  }
 });
+
+//@Route DELETE api/profile/game/:gme_id
+//@Description delete game from profile
+//@access Private
+router.delete('/game/:gme_id', auth, async (req, res) => {
+  try {
+   const profile = await Profile.findOne({ user: req.user.id });
+
+//get remove index
+   const removeIndex = profile.game
+    .map(item => item.id)
+    .indexOf(req.params.gme_id);
+
+   profile.game.splice(removeIndex, 1);
+
+   await profile.save();
+
+   res.json(profile);
+
+  } catch (err) {
+    console.error(err.message);
+     res.status(500).send('server error');
+
+  }
+});
+
 module.exports = router;
