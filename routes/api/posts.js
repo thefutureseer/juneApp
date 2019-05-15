@@ -7,7 +7,7 @@ const Post = require('../../models/Post');
 const Profile = require('../../models/Profile');
 const User = require('../../models/User');
 
-//@route POST api/users
+//@route POST api/posts
 //@discription create a post
 //@access private
 router.post(
@@ -43,5 +43,43 @@ router.post(
   
   }
 );
+
+//@route GET api/posts
+//@discription get all posts
+//@access private
+router.get('/', auth, async (req, res) => {
+ try {
+  const post = await Post.find().sort({ date: -1 });
+  res.json(post)
+   
+ } catch (err) {
+   console.error(err.message);
+   err.status(500).send('server error');
+   
+ }
+});
+
+//@route GET api/posts/:id
+//@discription get a post by its id
+//@access private
+router.get('/:id', auth, async (req, res) => {
+  try {
+   const post = await Post.findById(req.params.id);
+
+   if(!post) {
+    return res.status(404).json({ msg: 'post not found '});
+   }
+
+    res.json(post);
+  } catch (err) {
+    console.error(err.message);
+    if(err.kind === 'ObjectId') {
+      return res.status(404).json({ msg: 'post not found '});
+    }
+    res.status(500).send('server error');
+    
+  }
+ });
+
 
 module.exports = router;
