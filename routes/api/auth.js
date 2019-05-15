@@ -8,7 +8,7 @@ const {check, validationResult} = require('express-validator/check');
 
 
 const User = require('../../models/User');
-
+/*
 //@route GET api/users
 //@discription test route
 //@access public
@@ -21,7 +21,7 @@ router.get('/', auth, async (req, res) => {
       res.status(500).send('server error');
     }
 });
-
+*/
 
 //@route POST api/auth
 //@discription authenticate user and get token
@@ -30,7 +30,6 @@ router.post(
   '/', 
   [
     check('name', 'please include a name').exists(),
-    check('phone', 'phone number required').exists(),
     check('password', 'password is required').exists()
   ], 
   async (req, res) => {

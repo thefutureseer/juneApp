@@ -13,7 +13,7 @@ router.get('/me', auth, async (req, res) => {
   try {
     const profile = await Profile.findOne({ user: req.user.id }).populate(
       'user', 
-      ['name', 'game']
+      ['name']
     );
 
     if (!profile) {
@@ -33,8 +33,7 @@ router.get('/me', auth, async (req, res) => {
 router.post(
   '/',
   [auth, [
-    check('name', 'name required').not().isEmpty(),
-    check('phone', 'phone number is required').exists()
+    check('name', 'name required').not().isEmpty()
     ]
   ],
   async (req, res) => {
@@ -45,8 +44,6 @@ router.post(
     const {
       name,
       phone,
-      game,
-      note,
       instagram
     } = req.body;
 
@@ -55,8 +52,6 @@ router.post(
     profileFields.user = req.user.id;
     if (name) profileFields.name = name;
     if (phone) profileFields.phone = phone;
-    if (game) profileFields.score = game;
-    if (note) profileFields.note = note;
 //console.log(profileFields);
 
 //build social object
@@ -95,7 +90,7 @@ router.post(
 //access: public
 router.get('/', async (req, res) => {
  try {
-   const profiles = await Profile.find().populate('user', ['name', 'phone']);
+   const profiles = await Profile.find().populate('user', ['name', 'phone', 'note']);
    res.json(profiles);
  } catch (err) {
    console.error(err.message);
@@ -140,14 +135,10 @@ router.delete('/', auth, async (req, res) => {
  });
 
 // @route PUT api/profile/game
-// @description
+// @description add a game
 // @ private
 router.put('/game', 
-[ auth,
- [ 
-   check('day', 'game day is required').not().isEmpty() 
- ]
-], 
+ auth, 
 async (req, res) => {
  const errors = validationResult(req);
  if(!errors.isEmpty()) {
@@ -156,13 +147,16 @@ async (req, res) => {
  const {
   day,
   hole,
-  score
+  score,
+  note
  } = req.body;
  const newGame = {
    day,
    hole,
-   score
- }
+   score,
+   note
+ };
+ 
  try {
    const profile = await Profile.findOne({ user: req.user.id });
 

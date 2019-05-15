@@ -31,19 +31,20 @@ const ProfileSchema = new mongoose.Schema({
    unique: true
    },
    hole: {
-    type: String,
+    type: Number,
     required: true
    },
    score: {
      type: Number,
      required: true
+   }, 
+   note: {
+    type: String,
+    required: false
    }
   }
  ],
- note: {
-   type: String,
-   required: false
- },
+
  //instagram
  date: {
    type: Date,

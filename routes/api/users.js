@@ -16,7 +16,6 @@ router.post(
     check('name', 'name is required')
       .not()
       .isEmpty(),
-    check('phone', 'please include a phone number').not().isEmpty(),
     check('password', 'password must be 8 digits or more'
     ).isLength({ min: 8 })
   ], 
@@ -25,9 +24,9 @@ router.post(
     if(!errors.isEmpty()){
       return res.status(400).json({ errors: errors.array() });
   }
-    const {name, score, email, password} = req.body;
+    const {name, phone, password} = req.body;
     try {
-      let user = await User.findOne({ email });
+      let user = await User.findOne({ phone });
  //see if user exists
       if (user) {
         return res.status(400).json({ errors: [{ msg: 'user already exists'}] });
@@ -37,8 +36,7 @@ router.post(
 
   user = new User({
     name,
-    score,
-    email,
+    phone,
     password
   });
 
