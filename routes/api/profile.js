@@ -43,7 +43,7 @@ router.post(
     }
     const {
       name,
-      phone,
+      email,
       instagram
     } = req.body;
 
@@ -51,7 +51,7 @@ router.post(
     const profileFields = {};
     profileFields.user = req.user.id;
     if (name) profileFields.name = name;
-    if (phone) profileFields.phone = phone;
+    if (email) profileFields.email = email;
 //console.log(profileFields);
 
 //build social object
@@ -90,7 +90,7 @@ router.post(
 //access: public
 router.get('/', async (req, res) => {
  try {
-   const profiles = await Profile.find().populate('user', ['name', 'phone', 'note']);
+   const profiles = await Profile.find().populate('user', ['name', 'email', 'note']);
    res.json(profiles);
  } catch (err) {
    console.error(err.message);
@@ -103,7 +103,7 @@ router.get('/', async (req, res) => {
 //access: public
 router.get('/user/:user_id', async (req, res) => {
   try {
-    const profile = await Profile.findOne({ user: req.params.user_id }).populate('user', ['name', 'phone']);
+    const profile = await Profile.findOne({ user: req.params.user_id }).populate('user', ['name', 'email']);
     if(!profile) return res.status(400).json({ msg: 'Profile not found'});
     res.json(profile);
   } catch (err) {

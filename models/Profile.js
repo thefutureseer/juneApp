@@ -8,17 +8,16 @@ const ProfileSchema = new mongoose.Schema({
    type: String,
    required: true
  },
+ /*
  phone: {
    type: Number,
    required: true
- },
- /*
+ }, */
  email: {
    type: String,
-   required: false,
-   unique: true
+   required: true,
  },
- */
+ 
  password: {
   type: String,
   required: false

@@ -8,8 +8,8 @@ const {check, validationResult} = require('express-validator/check');
 
 
 const User = require('../../models/User');
-/*
-//@route GET api/users
+
+//@route GET api/auth
 //@discription test route
 //@access public
 router.get('/', auth, async (req, res) => {
@@ -21,7 +21,7 @@ router.get('/', auth, async (req, res) => {
       res.status(500).send('server error');
     }
 });
-*/
+
 
 //@route POST api/auth
 //@discription authenticate user and get token
@@ -29,7 +29,7 @@ router.get('/', auth, async (req, res) => {
 router.post(
   '/', 
   [
-    check('name', 'please include a name').exists(),
+    check('email', 'email is required to get you to the proper account').isEmpty(),
     check('password', 'password is required').exists()
   ], 
   async (req, res) => {
@@ -37,9 +37,9 @@ router.post(
     if(!errors.isEmpty()){
       return res.status(400).json({ errors: errors.array() });
   }
-    const { name, password } = req.body;
+    const { email, password } = req.body;
     try {
-      let user = await User.findOne({ name });
+      let user = await User.findOne({ email });
 
  //see if user exists
       if (!user) {

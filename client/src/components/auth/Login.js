@@ -4,11 +4,11 @@ import {Link} from 'react-router-dom';
 const Login = () => {
   const [ formData, setFormData ] = useState({
     name: '',
-    phone: '',
+    email: '',
     password: ''
   });
 
-  const {name, phone, password} = formData;
+  const {name, email, password} = formData;
 
   const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
 
@@ -32,7 +32,13 @@ const Login = () => {
       />
     </div>
     <div className="form-group">
-      <input type="phone" placeholder="phone number" name="phone" value={phone} onChange={e => onChange(e)} required/>
+      <input 
+      type="email" 
+      placeholder="email" 
+      name="email" 
+      value={email} 
+      onChange={e => onChange(e)} 
+      required/>
     </div>
     <div className="form-group">
       <input
