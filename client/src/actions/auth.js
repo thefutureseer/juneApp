@@ -24,6 +24,7 @@ export const register = ({ name, email, password }) => async dispatch => {
      type: REGISTER_SUCCESS,
      payload: res.date
     });
+
   } catch (err) {
     const errors = err.response.data.errors;
 
@@ -35,4 +36,4 @@ export const register = ({ name, email, password }) => async dispatch => {
       type: REGISTER_FAIL
     });
   }
-}
+};
