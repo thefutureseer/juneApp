@@ -2,8 +2,15 @@ import axios from 'axios';
 import {setAlert} from './alert';
 import {
   REGISTER_SUCCESS,
-  REGISTER_FAIL
+  REGISTER_FAIL,
+  USER_LOADED,
+  AUTH_ERROR
 } from './types';
+
+//load user
+export const loadUser = () => async dispatch => {
+ 
+}
 
 //register user action
 export const register = ({ name, email, password }) => async dispatch => {
@@ -11,7 +18,7 @@ export const register = ({ name, email, password }) => async dispatch => {
     headers: {
       'Content-Type': 'application/json'
     }
-  }
+  };
 
   const body = JSON.stringify({ name, email, password });
 
@@ -22,7 +29,7 @@ export const register = ({ name, email, password }) => async dispatch => {
 
     dispatch({
      type: REGISTER_SUCCESS,
-     payload: res.date
+     payload: res.data
     });
 
   } catch (err) {
