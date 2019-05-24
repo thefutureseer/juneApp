@@ -11,7 +11,7 @@ const Login = ({ login }) => {
     password: ''
   });
 
-  const {name, email, password} = formData;
+  const { email, password} = formData;
 
   const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
 
@@ -20,49 +20,43 @@ const Login = ({ login }) => {
     login(email, password);
   };
 
-  return <Fragment>
-  <h1 className="large text-primary">Sign Up</h1>
-  <p className="lead"><i className="fas fa-user"></i> Create Your Account</p>
-  <form className="form" onSubmit={e => onSubmit(e)}>
-    <div className="form-group">
-      <input 
-        type="text" 
-        placeholder="Name" 
-        name="name" 
-        value={name}
-        onChange={e => onChange(e)}
-        required 
-      />
-    </div>
-    <div className="form-group">
-      <input 
-      type="email" 
-      placeholder="email" 
-      name="email" 
-      value={email} 
-      onChange={e => onChange(e)} 
-      required/>
-    </div>
-    <div className="form-group">
-      <input
-        type="password"
-        placeholder="Password"
-        name="password"
-        value={password}
-        onChange={e => onChange(e)}
-        required
-        minLength="6"
-      />
-    </div>
-    <input type="submit" className="btn btn-primary" value="Login" />
-  </form>
-  <p className="my-1">
-    Dont already have an account? <Link to="/register">sign up</Link>
-  </p>
-</Fragment>
+  return (
+    <Fragment>
+      <h1 className="large text-primary">Sign Up</h1>
+      <p className="lead">
+       <i className="fas fa-user"></i> Create Your Account
+      </p>
+      <form className="form" onSubmit={e => onSubmit(e)}>
+        <div className="form-group">
+          <input 
+          type="email" 
+          placeholder="email" 
+          name="email" 
+          value={email} 
+          onChange={e => onChange(e)} 
+          required/>
+        </div>
+        <div className="form-group">
+          <input
+            type="password"
+            placeholder="Password"
+            name="password"
+            value={password}
+            onChange={e => onChange(e)}
+            required
+            minLength="6"
+          />
+        </div>
+        <input type="submit" className="btn btn-primary" value="Login" />
+      </form>
+      <p className="my-1">
+        Dont already have an account? <Link to="/register">sign up</Link>
+      </p>
+    </Fragment>
+  );
 };
 
-Login.PropTypes = {
+Login.propTypes = {
   login: PropTypes.func.isRequired
 }
 
