@@ -6,14 +6,14 @@ import {login} from '../../actions/auth';
 
 const Login = ({ login, isAuthenticated }) => {
   const [ formData, setFormData ] = useState({
-    name: '',
     email: '',
     password: ''
   });
 
   const { email, password} = formData;
 
-  const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
+  const onChange = e => 
+   setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const onSubmit = async e => { 
     e.preventDefault();
@@ -22,7 +22,7 @@ const Login = ({ login, isAuthenticated }) => {
 
   //redirect if logged
   if(isAuthenticated) {
-    return <Redirect to="/dashboard"/>
+    return <Redirect to="/dashboard"/>;
   }
 
   return (
@@ -48,8 +48,7 @@ const Login = ({ login, isAuthenticated }) => {
             name="password"
             value={password}
             onChange={e => onChange(e)}
-            required
-            minLength="6"
+            minLength="8"
           />
         </div>
         <input type="submit" className="btn btn-primary" value="Login" />

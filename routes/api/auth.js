@@ -27,11 +27,11 @@ router.get('/', auth, async (req, res) => {
 //@discription authenticate user and get token
 //@access public
 router.post(
-  '/', 
+ '/',
   [
-    check('email', 'email is required to get you to the proper account').isEmpty(),
-    check('password', 'password is required').exists()
-  ], 
+    check('email', 'Please include a valid email').isEmail(),
+    check('password', 'Password is required').exists()
+  ],
   async (req, res) => {
     const errors = validationResult(req);
     if(!errors.isEmpty()){
