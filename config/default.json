@@ -1,4 +1,4 @@
 {
-  "mongoURI":"mongodb://Darren1:darren1@ds241677.mlab.com:41677/databaseconnect",
+  "mongoURI": "mongodb+srv://User:user1@cluster0-pll5y.mongodb.net/test?retryWrites=true",
   "jwtSecret": "mysecrettoken"
 }

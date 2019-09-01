@@ -40,8 +40,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
         placeholder="Name" 
         name="name" 
         value={name}
-        onChange={e => onChange(e)}
-        
+        onChange={e => onChange(e)} 
       />
     </div>
     <div className="form-group">
