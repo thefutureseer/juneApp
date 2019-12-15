@@ -46,7 +46,7 @@ const EditProfile = ({
       youtube: loading || !profile.social ? '' : profile.social.youtube,
       instagram: loading || !profile.social ? '' : profile.social.instagram
     });
-  }, [loading]);
+  }, [loading, getCurrentProfile]);
 
   const {
     company,
@@ -62,19 +62,24 @@ const EditProfile = ({
     youtube,
     instagram,
   } = formData;
+
   const onChange = e =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
+
   const onSubmit = e => {
     e.preventDefault();
     createProfile(formData, history, true);
   };
-  useEffect(() => {
-    getCurrentProfile();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [getCurrentProfile]);
-  return loading && profile === null ? (
-    <Redirect to='/dashboard' />
-  ) : (
+
+  // useEffect(() => {
+  //   getCurrentProfile();
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [getCurrentProfile]);
+
+  return (
+  // loading && profile === null ? (
+  //   <Redirect to='/dashboard' />
+  // ) : (
     <Fragment>
       <h1 className='large text-primary'>Create Your Profile</h1>
       <p className='lead'>

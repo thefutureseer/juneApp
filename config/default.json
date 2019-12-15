@@ -1,4 +1,6 @@
 {
-  "mongoURI": "mongodb+srv://User:user1@cluster0-pll5y.mongodb.net/test?retryWrites=true",
+  "mongoURI": "mongodb://mayAppBoss:dbBoss1@ds145926.mlab.com:45926/mayapp",
   "jwtSecret": "mysecrettoken"
 }
+
+//  "mongoURI": "mongodb+srv://User:user1@cluster0-pll5y.mongodb.net/test?retryWrites=true"
