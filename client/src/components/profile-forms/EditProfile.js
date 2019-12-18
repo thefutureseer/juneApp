@@ -182,7 +182,7 @@ const EditProfile = ({
           >
             Add Social Network Links
           </button>
-          <span>Optional</span>
+          <span>Social Media is Optional</span>
         </div>
         {displaySocialInputs && (
           <Fragment>
