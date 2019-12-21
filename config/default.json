@@ -1,6 +1,6 @@
 {
   "mongoURI": "mongodb://mayAppBoss:dbBoss1@ds145926.mlab.com:45926/mayapp",
-  "jwtSecret": "mysecrettoken"
+  "jwtSecret": "mysecrettoken",
+  "githubClientId": "ee75d74beca54ed6338f",
+  "githubSecret": "535ac27bc6748e4a60dfe69679793c355740a035"
 }
-
-//  "mongoURI": "mongodb+srv://User:user1@cluster0-pll5y.mongodb.net/test?retryWrites=true"
