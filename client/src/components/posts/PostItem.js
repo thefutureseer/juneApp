@@ -41,7 +41,7 @@ const PostItem = ({
           <i class="fas fa-thumbs-down"></i>
         </button>
         <Link to={`/posts/${_id}`} class="btn btn-primary">
-          Bragging rights{' '} {comments.length > 0 && (
+          See post and comments{' '} {comments.length > 0 && (
             <span class='comment-count'>{comments.length}</span>
           ) } 
         </Link>
