@@ -10,7 +10,7 @@ const CommentForm = ({postId, addComment}) => {
     <div className="bg-primary p">
       <h3>Comments and Questions</h3>
     </div>
-    <form class="form my-1" onSubmit={e => {
+    <form className="form my-1" onSubmit={e => {
       e.preventDefault();
       addComment(postId, {text });
       setText(' ');
