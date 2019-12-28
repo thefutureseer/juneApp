@@ -38,7 +38,7 @@ const Dashboard = ({
           </div>
         </Fragment>) : 
         (<Fragment>
-          <p>No Profile yet, you can add one now</p>
+          <p>No Profile? Add one now</p>
           <Link to='/create-profile'className='btn btn-primary my-1'>
             Create Profile
           </Link>

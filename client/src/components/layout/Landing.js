@@ -12,9 +12,10 @@ const Landing = ({ isAuthenticated }) => {
   <section className="landing">
   <div className="dark-overlay">
     <div className="landing-inner">
-      <h1 className="x-large"> Footgolf Fun</h1>
+      <h1 className="x-large">FOOTGOLF FUN</h1>
+      <b/>
       <p className="lead">
-        Create a Footgolfer profile and game portfolio, share posts and get together with other footgolfers
+        Create a Footgolfer profile, post, like posts, comment and have fun with other footgolfers!
       </p>
       <div className="buttons">
         <Link to="/register" className="btn btn-primary">Sign Up </Link>
