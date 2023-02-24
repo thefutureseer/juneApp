@@ -1,0 +1,6 @@
+did work to add:
+.env file 
+
+
+didn't work to add:
+"eslint": "^5.16.0"
