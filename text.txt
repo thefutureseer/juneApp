@@ -1,2 +1,5 @@
 feb 24 2023
 add npm install source-map-url
+
+trying to trace errors with:
+    "dev:trace": "concurrently --raw --kill-others \"node --trace-warnings server.js\" \"npm start\"",

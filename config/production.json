@@ -1,5 +1,5 @@
 {
-  "mongoURI": "mongodb://mayAppBoss:dbBoss1@ds145926.mlab.com:45926/mayapp",
+  "mongoURI": "mongodb+srv://themedicalmiracle:aXMwaXGlgKNeejze@cluster0.xomqv89.mongodb.net/?retryWrites=true&w=majority",
   "jwtSecret": "mysecrettoken",
   "githubClientId": "ee75d74beca54ed6338f",
   "githubSecret": "535ac27bc6748e4a60dfe69679793c355740a035"
