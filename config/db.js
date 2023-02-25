@@ -7,7 +7,11 @@ const connectDB = async () => {
     await mongoose.connect(db, { 
       useNewUrlParser: true,
       useCreateIndex: true,
-      useFindAndModify: false
+      //determines whether or not to use MongoDB's findOneAndUpdate() instead of the deprecated findAndModify
+      useFindAndModify: false,
+      // using the new Server Discover and Monitoring engine   
+      useUnifiedTopology: true, 
+ 
     });
     console.log('mongodb connect.')
   } catch(err) {

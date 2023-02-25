@@ -13,7 +13,7 @@ const Landing = ({ isAuthenticated }) => {
   <div className="dark-overlay">
     <div className="landing-inner">
       <h1 className="x-large">FOOTGOLF FUN</h1>
-      <h9>Make the world a little bit better place with footgolf social media.</h9>
+      <h6>Make the world a little bit better place with footgolf social media.</h6>
       <p className="lead">
         Create a Footgolfer profile, post, like posts, comment and have fun with other footgolfers!
       </p>
