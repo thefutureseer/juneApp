@@ -1,6 +1,6 @@
 /* Global Styles */
 :root {
-  --primary-color: #17a2b8;
+  --primary-color: #00a5c2;
   --dark-color: #343a40;
   --light-color: #f4f4f4;
   --danger-color: #dc3545;
@@ -281,19 +281,19 @@ button {
 }
 
 .form .social-input i.fa-twitter {
-  color: #38a1f3;
+  color: #00a5c2;
 }
 .form .social-input i.fa-facebook {
   color: #3b5998;
 }
 .form .social-input i.fa-instagram {
-  color: #3f729b;
+  color: #42759e;
 }
 .form .social-input i.fa-youtube {
   color: #c4302b;
 }
 .form .social-input i.fa-linkedin {
-  color: #0077b5;
+  color: #005b8c;
 }
 
 .table th,
@@ -316,7 +316,7 @@ button {
   z-index: 1;
   width: 100%;
   top: -15px;
-  border-bottom: solid 1px #00dcff;
+  border-bottom: solid 1px #00a5c2;
   opacity: 0.9;
   box-shadow: 0 0 6px 2px black;
 }
