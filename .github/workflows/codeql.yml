@@ -1,0 +1,55 @@
+name: "CodeQL"
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+  schedule:
+    - cron: '0 0 * * *'  # Runs every Monday at 09:43 UTC
+
+jobs:
+  analyze:
+    name: Analyze (${{ matrix.language }})
+    runs-on: ${{ (matrix.language == 'swift' && 'macos-latest') || 'ubuntu-latest' }}
+    timeout-minutes: ${{ (matrix.language == 'swift' && 120) || 360 }}
+    permissions:
+      security-events: write
+      packages: read  # required to fetch internal or private CodeQL packs
+      actions: read   # only required for workflows in private repositories
+      contents: read  # only required for workflows in private repositories
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - language: javascript-typescript
+            build-mode: none
+          # Add more languages here if needed
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v3
+      with:
+        languages: ${{ matrix.language }}
+        build-mode: ${{ matrix.build-mode }}
+        # Optionally, specify custom queries
+        # queries: security-extended,security-and-quality
+
+    # Manual build step if auto build fails, adjust according to your project's build process
+    - if: matrix.build-mode == 'manual'
+      shell: bash
+      run: |
+        echo 'If using "manual" build mode, replace this with commands to build your code.'
+        echo 'Example:'
+        echo '  make bootstrap'
+        echo '  make release'
+        exit 1
+
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v3
+      with:
+        category: "/language:${{matrix.language}}"
