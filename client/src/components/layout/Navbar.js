@@ -8,7 +8,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const authLinks = (
     <ul>
       <li>
-        <Link to='/profiles'>
+        <Link to='/profiles' data-testid="profiles-link">
           Profiles
         </Link>
       </li>
@@ -34,7 +34,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const guestLinks = (
     <ul>
       <li>
-        <Link to='/profiles'> Profiles </Link>
+        <Link to='/profiles' data-testid="profiles-link"> Profiles </Link>
       </li>
       <li>
         <Link to="/register">Register</Link>
@@ -48,7 +48,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   <nav className="navbar bg-dark">
       <h1>
         <Link to="/"> 
-        <i className="fgf-logo" />SS</Link>
+        <i className="fgf-logo" data-testid='brand-link'/>SS</Link>
         
       </h1>
       { !loading && (<Fragment>{ isAuthenticated ? authLinks : guestLinks }</Fragment>) }
