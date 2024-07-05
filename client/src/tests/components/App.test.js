@@ -1,9 +1,9 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { render } from '../setupTests';
-import App from '../App';
-import Navbar from '../components/layout/Navbar';
+import { render } from '../../setupTests';
+import App from '../../App';
+import Navbar from '../../components/layout/Navbar';
 // Import MemoryRouter to wrap your tests with Router context
 import { MemoryRouter } from 'react-router-dom'; 
 
