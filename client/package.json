@@ -13,6 +13,7 @@
     "react-scripts": "5.0.1",
     "redux": "^4.2.1",
     "redux-devtools-extension": "^2.13.8",
+    "redux-thunk": "^2.4.2",
     "uuid": "^3.3.2"
   },
   "scripts": {
@@ -44,7 +45,8 @@
     "@testing-library/react": "^12.1.5",
     "babel-jest": "^29.7.0",
     "jest": "^29.7.0",
-    "jest-environment-jsdom": "^29.7.0"
+    "jest-environment-jsdom": "^29.7.0",
+    "redux-mock-store": "^1.5.4"
   },
   "jest": {
     "testEnvironment": "jsdom",
